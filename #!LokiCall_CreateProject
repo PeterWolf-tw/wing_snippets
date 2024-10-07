@@ -1,0 +1,23 @@
+from requests import post
+from pprint import pprint
+
+url = "https://api.droidtown.co/Loki/Call/"  #線上版 URL
+#url = "https://nlu.droidtown.co/Loki/Call/"  #英文版線上 URL
+
+def createLokiProject(accountDICT, projectSTR=""):
+    lokiurl = "https://api.droidtown.co/Loki/Call/"  #線上版 URL
+    if projectSTR == "" or intentSTR == "":
+        response = {"status":"false",
+                    "msg":"projectSTR or intentSTR cannot be empty string."}
+    else:
+        payload = {
+            "username" : accountDICT["username"],
+            "func": "create_project",
+            "data": {
+                "name":projectSTR,
+                "language": "zh-tw", # 可省略，專案使用語言 { 中文："zh-tw", 台語："taigi" }
+                "type": "" # "intent", "greedy_slime", "neuro_kumoko"
+            }
+        }
+        response = post(lokiurl, json=payload).json()
+    return response

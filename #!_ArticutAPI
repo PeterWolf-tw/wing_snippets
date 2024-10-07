@@ -1,0 +1,10 @@
+import json
+from ArticutAPI import Articut
+
+try:
+    with open("./account.info", encoding="utf-8") as f:
+        accountDICT = json.load(f)
+except:
+    accountDICT = {"username":"", "apikey":""}
+
+articut = Articut(username=accountDICT["username"], apikey=accountDICT["apikey"])

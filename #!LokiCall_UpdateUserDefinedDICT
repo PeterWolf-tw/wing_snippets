@@ -1,0 +1,16 @@
+from requests import post
+
+def _updateUserDefined(accountDICT, projectSTR="", userdefinedDICT={}):
+    payload = {
+        "username" : accountDICT["username"], # 這裡填入您在 https://api.droidtown.co 使用的帳號 email。     Docker 版不需要此參數！
+        "loki_key" : accountDICT["loki_key"], # 這裡填入您在 https://api.droidtown.co 登入後取得的 loki_key。 Docker 版不需要此參數！
+        "project": projectSTR,
+        "func": "update_userdefined",
+        "data": {
+            "user_defined": {
+            }
+        }
+    }
+    payload["data"].update(userdefinedDICT)
+    response = post(lokiURL, json=payload).json()
+    return response

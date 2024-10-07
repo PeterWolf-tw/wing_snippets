@@ -1,0 +1,4 @@
+from glob import glob
+
+for f in glob("{}/*.json".format(sourceDIR)):
+    #DoThingsHere

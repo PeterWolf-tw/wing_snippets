@@ -1,0 +1,3 @@
+import logging
+logFORMAT = "%%(funcName)s>>%%(message)s"
+logging.basicConfig(level=logging.DEBUG, format=logFORMAT)

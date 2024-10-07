@@ -1,0 +1,18 @@
+from requests import post
+
+#url = "https://api.droidtown.co/Loki/Call/"  #線上版 URL
+url = "http://LokiTool_URL/loki/call/" #LokiCall Docker 版請自訂 URL
+
+def updateLokiUserDefined(accountDICT, projectSTR="", userDefinedDICT={}):
+	payload = {
+		#"username" : accountDICT["username"],
+		#"loki_key" : accountDICT["loki_key"],
+		"project": projectSTR,
+		"func": "update_userdefined",
+		"data": {
+			"user_defined": userDefinedDICT
+		}
+	}
+
+	response = post(url, json=payload).json()
+	return response

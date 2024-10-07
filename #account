@@ -1,0 +1,2 @@
+import json
+accountDICT = json.load(open("account.info", encoding="utf-8"))

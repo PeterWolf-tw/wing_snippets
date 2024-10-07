@@ -1,0 +1,33 @@
+from requests import post
+
+def insertLokiUtterance(accountDICT, projectSTR="", intentSTR="", utteranceLIST=[]):
+    #url = "https://api.droidtown.co/Loki/Call/"  #線上版 URL
+    url = "http://LokiTool_URL/loki/call/" #LokiCall Docker 版請自訂 URL
+    payload = {
+        #"username" : "", # 這裡填入您在 https://api.droidtown.co 使用的帳號 email。     Docker 版不需要此參數！
+        #"loki_key" : "", # 這裡填入您在 https://api.droidtown.co 登入後取得的 loki_key。 Docker 版不需要此參數！
+        "project": projectSTR, #專案名稱
+        "intent" : intentSTR,  #意圖名稱
+        "func": "insert_utterance",
+        "data": {
+            "utterance": utteranceLIST, #要新增的語句
+            "checked_list": [ #所有詞性全勾選。你可以把不要勾的項目註解掉。
+                "ENTITY_noun", #包含所有名詞
+                "UserDefined",
+                "ENTITY_num",
+                "DegreeP",
+                "MODIFIER_color",
+                "LOCATION",
+                "KNOWLEDGE_addTW",
+                "KNOWLEDGE_routeTW",
+                "KNOWLEDGE_lawTW",
+                "KNOWLEDGE_url",
+                "KNOWLEDGE_place",
+                "KNOWLEDGE_wikiData",
+                "KNOWLEDGE_currency"
+            ]
+        }
+    }
+
+    response = post(url, json=payload).json()
+    return response

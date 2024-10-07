@@ -1,0 +1,18 @@
+def createLokiIntent(accountDICT, projectSTR="", intentSTR=""):
+	lokiurl = "https://api.droidtown.co/Loki/Call/"  #線上版 URL
+	if projectSTR == "" or intentSTR == "":
+		response = {"status":"false",
+					"msg":"projectSTR or intentSTR cannot be empty string."}
+	else:
+		payload = {
+			"username" : accountDICT["username"],
+			"loki_key" : accountDICT["loki_key"],
+			"project": projectSTR,
+			"intent": intentSTR,
+			"func": "create_intent",
+			"data": {
+				"type": "basic"
+			}
+		}
+		response = post(lokiurl, json=payload).json()
+	return response

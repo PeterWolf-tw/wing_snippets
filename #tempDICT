@@ -1,0 +1,5 @@
+import tempfile
+
+tempDICT = tempfile.NamedTemporaryFile(mode="w+")
+json.dump({"_userDefined":[]}, tempDICT)
+tempDICT.flush()
